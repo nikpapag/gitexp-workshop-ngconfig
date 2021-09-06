@@ -71,6 +71,12 @@ pipeline:
                                         limits:
                                             memory: 1Gi
                                             cpu: "1"
+                  serviceConfig:
+                      serviceRef: ""
+                      serviceDefinition:
+                          type: Kubernetes
+                          spec:
+                              variables: []
               variables: []
         - stage:
               name: Deploy
@@ -210,3 +216,7 @@ pipeline:
                             - AllErrors
                         action:
                             type: StageRollback
+    variables:
+        - name: seusername
+          type: String
+          value: ""
