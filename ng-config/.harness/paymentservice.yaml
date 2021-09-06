@@ -1,0 +1,45 @@
+pipeline:
+    name: payment-service
+    identifier: paymentservice
+    projectIdentifier: gitexpworkshop
+    orgIdentifier: default
+    tags: {}
+    properties:
+        ci:
+            codebase:
+                connectorRef: nikpgithubconnector
+                repoName: payment-service
+                build: <+input>
+    stages:
+        - stage:
+              name: buil
+              identifier: buil
+              description: ""
+              type: CI
+              spec:
+                  cloneCodebase: true
+                  infrastructure:
+                      type: KubernetesDirect
+                      spec:
+                          connectorRef: account.gitexpgke
+                          namespace: ci-build
+                  execution:
+                      steps:
+                          - step:
+                                type: RunTests
+                                name: Tests
+                                identifier: Tests
+                                spec:
+                                    connectorRef: gitexpdockerhub
+                                    image: nikpap/mvn-openjdk-8:harness
+                                    language: Java
+                                    buildTool: Maven
+                                    args: test
+                                    packages: com.nikp
+                                    runOnlySelectedTests: true
+                                    preCommand: cd payment-service
+                                    resources:
+                                        limits:
+                                            memory: 1Gi
+                                            cpu: "1"
+              variables: []
