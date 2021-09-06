@@ -41,6 +41,36 @@ pipeline:
                                         limits:
                                             memory: 1Gi
                                             cpu: "1"
+                          - step:
+                                type: Run
+                                name: Build
+                                identifier: Build
+                                spec:
+                                    connectorRef: gitexpdockerhub
+                                    image: nikpap/mvn-openjdk-8:harness
+                                    command: |-
+                                        cd payment-service
+                                        mvn -Dmaven.test.skip=true clean install -X
+                                    privileged: false
+                                    resources:
+                                        limits:
+                                            memory: 1Gi
+                                            cpu: "1"
+                          - step:
+                                type: BuildAndPushDockerRegistry
+                                name: pushToDockerHub
+                                identifier: pushToDockerHub
+                                spec:
+                                    connectorRef: gitexpdockerhub
+                                    repo: nikpap/payment-service
+                                    tags:
+                                        - latest
+                                    dockerfile: /harness/payment-service/Dockerfile
+                                    optimize: true
+                                    resources:
+                                        limits:
+                                            memory: 1Gi
+                                            cpu: "1"
               variables: []
         - stage:
               name: Deploy
