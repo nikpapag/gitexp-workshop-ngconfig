@@ -21,7 +21,7 @@ pipeline:
                       type: KubernetesDirect
                       spec:
                           connectorRef: account.gitexpgke
-                          namespace: ci-build
+                          namespace: ci-build-test
                   execution:
                       steps:
                           - step:
