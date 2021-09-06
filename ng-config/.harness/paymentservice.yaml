@@ -144,7 +144,10 @@ pipeline:
                                     environmentVariables: []
                                     outputVariables: []
                                     executionTarget: {}
+                                    delegateSelectors:
+                                        - gitexp-workshop
                                 timeout: 10m
+                                failureStrategies: []
                       rollbackSteps:
                           - step:
                                 name: Rollback Rollout Deployment
