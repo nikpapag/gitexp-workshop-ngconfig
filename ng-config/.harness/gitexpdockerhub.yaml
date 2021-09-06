@@ -1,0 +1,15 @@
+connector:
+  name: git-exp-dockerhub
+  identifier: gitexpdockerhub
+  description:
+  orgIdentifier: default
+  projectIdentifier: gitexpworkshop
+  type: DockerRegistry
+  spec:
+    dockerRegistryUrl: https://index.docker.io/v2/
+    providerType: DockerHub
+    auth:
+      type: UsernamePassword
+      spec:
+        username: nikpap
+        passwordRef: nikpapdockerhub
