@@ -137,50 +137,10 @@ pipeline:
                                         type: Inline
                                         spec:
                                             script: |-
-                                                apt-get update
-                                                apt-get install -y python-pip
-                                                pip install requests
-                                                read -r -d '' script <<-"EOF"
-                                                import requests
-                                                import os
+                                                namspace=<+pipeline.variables.seusername>
+                                                ip=$(kubectl -n $namespace get service -o jsonpath="{.items[0].status.loadBalancer.ingress[0].ip}")
 
-                                                def export_variable(key,value):
-                                                   command="export "+key+"=\""+value+"\""
-                                                   print(command)
-                                                   with open('export_variable.sh', 'w') as rsh:
-                                                       rsh.write(command)
-                                                       rsh.close()
-
-                                                urlstream = os.popen('kubectl -n todos-dev get service -o jsonpath="{.items[1].status.loadBalancer.ingress[0].ip}"')
-                                                output = urlstream.read()
-
-                                                url='http://'+output+':8080/login'
-
-                                                print(url)
-                                                try :
-                                                   response = requests.get(url,verify=False)
-                                                   if response.status_code == 200:
-                                                        export_variable("result", "success")
-                                                   else :
-                                                        export_variable("result", "fail")
-                                                except:
-                                                   export_variable("result", "fail")
-                                                   pass     
-                                                EOF
-                                                python -c "$script"
-
-                                                result_file="export_variable.sh"
-
-                                                result=""
-
-                                                if [ -f "$result_file" ] ; then
-                                                        echo "File with response status found"
-                                                        result="$(cat export_variable.sh)"
-                                                fi
-
-                                                echo $result
-
-                                                export $result
+                                                echo "http://$ip:8080"
                                     environmentVariables: []
                                     outputVariables: []
                                     executionTarget: {}
