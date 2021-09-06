@@ -136,8 +136,8 @@ pipeline:
                                     source:
                                         type: Inline
                                         spec:
-                                            script: |-
-                                                namspace=<+pipeline.variables.seusername>
+                                            script: |
+                                                namespace=<+pipeline.stages.Deploy.spec.infrastructure.infrastructureDefinition.spec.namespace>
                                                 ip=$(kubectl -n $namespace get service -o jsonpath="{.items[0].status.loadBalancer.ingress[0].ip}")
 
                                                 echo "http://$ip:8080"
