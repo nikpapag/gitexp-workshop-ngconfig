@@ -203,3 +203,6 @@ pipeline:
         - name: seusername
           type: String
           value: <+input>
+        - name: ffsdkkeyprod
+          type: String
+          value: test
