@@ -12,9 +12,8 @@ pipeline:
                 build: <+input>
     stages:
         - stage:
-              name: buil
+              name: build
               identifier: buil
-              description: ""
               type: CI
               spec:
                   cloneCodebase: true
@@ -42,4 +41,3 @@ pipeline:
                                         limits:
                                             memory: 1Gi
                                             cpu: "1"
-              variables: []
