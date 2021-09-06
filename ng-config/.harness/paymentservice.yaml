@@ -84,9 +84,9 @@ pipeline:
                                                     connectorRef: nikpgithubconnector
                                                     gitFetchType: Branch
                                                     paths:
-                                                        - harness-deploy/payment-service-dev
-                                                    repoName: harness-cie-lab
-                                                    branch: main
+                                                        - templates
+                                                    repoName: payment-service-nonprod
+                                                    branch: master
                                             skipResourceVersioning: false
                                   - manifest:
                                         identifier: values
@@ -98,9 +98,9 @@ pipeline:
                                                     connectorRef: nikpgithubconnector
                                                     gitFetchType: Branch
                                                     paths:
-                                                        - harness-deploy/values.yaml
-                                                    repoName: harness-cie-lab
-                                                    branch: main
+                                                        - values-non-prod.yaml
+                                                    repoName: payment-service-nonprod
+                                                    branch: master
                               artifacts:
                                   primary:
                                       type: DockerRegistry
