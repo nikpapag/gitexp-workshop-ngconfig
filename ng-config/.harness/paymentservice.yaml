@@ -25,23 +25,6 @@ pipeline:
                   execution:
                       steps:
                           - step:
-                                type: RunTests
-                                name: Tests
-                                identifier: Tests
-                                spec:
-                                    connectorRef: gitexpdockerhub
-                                    image: nikpap/mvn-openjdk-8:harness
-                                    language: Java
-                                    buildTool: Maven
-                                    args: test
-                                    packages: com.nikp
-                                    runOnlySelectedTests: true
-                                    preCommand: cd payment-service
-                                    resources:
-                                        limits:
-                                            memory: 1Gi
-                                            cpu: "1"
-                          - step:
                                 type: Run
                                 name: Build
                                 identifier: Build
@@ -64,7 +47,7 @@ pipeline:
                                     connectorRef: gitexpdockerhub
                                     repo: nikpap/payment-service
                                     tags:
-                                        - latest
+                                        - <+pipeline.variables.seusername>-workshop
                                     dockerfile: /harness/payment-service/Dockerfile
                                     optimize: true
                                     resources:
