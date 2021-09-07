@@ -114,7 +114,7 @@ pipeline:
                           type: KubernetesDirect
                           spec:
                               connectorRef: account.gitexpgke
-                              namespace: payment-service-<+pipeline.variables.seusername>
+                              namespace: oli-payment-service
                               releaseName: release-<+INFRA_KEY>
                       allowSimultaneousDeployments: false
                   execution:
