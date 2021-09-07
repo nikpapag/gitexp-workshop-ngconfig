@@ -107,7 +107,7 @@ pipeline:
                                       spec:
                                           connectorRef: gitexpdockerhub
                                           imagePath: nikpap/payment-service
-                                          tag: "3"
+                                          tag: <+pipeline.variables.seusername>-workshop
                   infrastructure:
                       environmentRef: prod
                       infrastructureDefinition:
