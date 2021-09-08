@@ -1,0 +1,11 @@
+connector:
+  name: robin-ddog
+  identifier: robinddog
+  description:
+  orgIdentifier: default
+  projectIdentifier: gitexpworkshop
+  type: Datadog
+  spec:
+    url: https://app.datadoghq.com/api/v1/
+    applicationKeyRef: robinddogkey
+    apiKeyRef: robinddogkeyid
