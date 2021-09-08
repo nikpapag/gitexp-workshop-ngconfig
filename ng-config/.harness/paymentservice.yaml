@@ -21,7 +21,7 @@ pipeline:
                       type: KubernetesDirect
                       spec:
                           connectorRef: account.gitexpgke
-                          namespace: ci-build-robin
+                          namespace: ci-build
                   execution:
                       steps:
                           - step:
