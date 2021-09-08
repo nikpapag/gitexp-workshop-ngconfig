@@ -1,0 +1,18 @@
+inputSet:
+  identifier: "robininputset"
+  pipeline:
+    identifier: "paymentservice"
+    properties:
+      ci:
+        codebase:
+          build:
+            type: "branch"
+            spec:
+              branch: "master"
+    variables:
+    - name: "seusername"
+      type: "String"
+      value: "robin"
+  name: "robin-input-set"
+  orgIdentifier: "default"
+  projectIdentifier: "gitexpworkshop"
