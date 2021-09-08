@@ -114,7 +114,7 @@ pipeline:
                           type: KubernetesDirect
                           spec:
                               connectorRef: account.gitexpgke
-                              namespace: payment-service
+                              namespace: payment-service-andy-page
                               releaseName: release-<+INFRA_KEY>
                       allowSimultaneousDeployments: false
                   execution:
