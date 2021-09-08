@@ -141,6 +141,7 @@ pipeline:
                                                 ip=$(kubectl -n $namespace get service -o jsonpath="{.items[0].status.loadBalancer.ingress[0].ip}")
 
                                                 echo "http://$ip:8080"
+                                                curl "http://$ip:8080"
                                     environmentVariables: []
                                     outputVariables: []
                                     executionTarget: {}
