@@ -12,8 +12,8 @@ pipeline:
                 build: <+input>
     stages:
         - stage:
-              name: build
-              identifier: buil
+              name: maven build
+              identifier: build
               type: CI
               spec:
                   cloneCodebase: true
@@ -128,7 +128,7 @@ pipeline:
                                     skipDryRun: false
                           - step:
                                 type: ShellScript
-                                name: service
+                                name: validate service
                                 identifier: service
                                 spec:
                                     shell: Bash
